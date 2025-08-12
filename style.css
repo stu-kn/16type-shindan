@@ -1,0 +1,164 @@
+/* 全体のスタイル */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* コンテンツを囲むコンテナ */
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* 見出し */
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+/* ラベル */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+    color: #555;
+}
+
+/* 入力フィールドとセレクトボックス */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* paddingを含めて幅を計算 */
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #77aaff;
+    outline: none;
+}
+
+/* ボタン */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* 誕生日選択のスタイル */
+.birthday-select {
+    display: flex;
+    gap: 10px;
+}
+
+/* 誕生日のselect要素は、個別のマージンをリセット */
+.birthday-select select {
+    margin-bottom: 20px; /* 他のselectと合わせる */
+}
+
+/* スマートフォン向けのレスポンシブ対応 */
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+/* --- モーダル用のスタイル --- */
+.modal {
+    display: none; /* 初期状態では非表示 */
+    position: fixed; /* 画面に固定 */
+    z-index: 100; /* 最前面に表示 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 内容が多い場合にスクロール */
+    background-color: rgba(0,0,0,0.5); /* 半透明の黒い背景 */
+    padding-top: 60px; /* 上部に余白 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: left;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.modal-content p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content #result-type {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 10px;
+    text-align: center;
+}
