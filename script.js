@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 診断結果データ ---
     const diagnosisResults = {
         "A型×火属性": {
-            title: "内に秘めた情熱を燃やす、誠実なチャレンジャー",
+            title: "内に秘めた情熱を燃やす誠実なチャレンジャー",
             description: "普段はA型らしく真面目で、周囲への配慮を欠かしません。しかし、心の中には「火」の情熱と向上心を秘めており、一度「これだ」と決めた目標や信じる正義のためには、驚くほどの行動力を発揮します。A型の計画性と火の直感が組み合わさることで、情熱的でありながらも無謀ではない、頼れるリーダーになる資質を持っています。",
             strengths: "責任感が強く、最後までやり遂げる粘り強さ。いざという時の決断力と行動力。正義感が強く、仲間を引っ張っていく力。",
             challenges: "内面の情熱と、周囲の目を気にするA型気質との間で葛藤しやすい。時に頑固になり、自分のやり方に固執してしまうことも。",
@@ -224,8 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // --- ここまで ---
-        document.getElementById('result-title').textContent = result.title;
-        document.getElementById('result-description').textContent = result.description;
+        document.getElementById('result-title').innerHTML = result.title;
+        document.getElementById('result-description').innerHTML = result.description;
                 document.getElementById('result-strengths').innerHTML = `<span class="label-text">【強み】</span><br>${result.strengths}`;
                 document.getElementById('result-challenges').innerHTML = `<span class="label-text">【課題】</span><br>${result.challenges}`;
         document.getElementById('result-keywords').innerHTML = `<span class="keyword-label">【キーワード】</span><br><span class="keyword-content">${result.keywords}</span>`;
@@ -248,7 +248,9 @@ document.addEventListener('DOMContentLoaded', function() {
             { imageUrl: 'images/05_B-Fire/result.png', top: '25%', right: '3%', scale: 1.0 },
             { imageUrl: 'images/09_O-Fire/result.png', bottom: '0%', left: '16%', scale: 1.2 },
             { imageUrl: 'images/13_AB-Fire/result.png', bottom: '-10%', right: '16%', scale: 1.2 },
-            { imageUrl: 'images/03_A-Air/result.png', top: '50%', left: '-2%', transform: 'translateY(-50%)', scale: 0.8 } // 垂直中央
+            { imageUrl: 'images/03_A-Air/result.png', top: '50%', left: '-2%', transform: 'translateY(-50%)', scale: 0.8 }, // 垂直中央
+            { imageUrl: '', top: '15%', left: '25%', scale: 0.9 },
+            { imageUrl: '', bottom: '10%', right: '25%', scale: 1.1 }
         ];
 
         // ランダムに5枚の画像を選び、上記の位置に割り当てる
