@@ -205,14 +205,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultImage = document.getElementById('result-image');
         const folderName = typeToFolderMap[type] || type; // マップにない場合は元のtypeを使用
         const imagePath = `images/${folderName}/result.png`;
-        resultImage.src = imagePath;
+
+        // 画像が読み込まれるまでモーダルを非表示にする
+        modal.style.display = 'none'; 
+        resultImage.style.opacity = '0'; // 画像自体も一時的に非表示にする
+
+        resultImage.onload = function() {
+            resultImage.style.opacity = '1'; // 画像が表示されたら不透明に戻す
+            modal.style.display = 'block'; // 画像読み込み後にモーダルを表示
+        };
+        resultImage.src = imagePath; // onloadを設定してからsrcを設定
+
+        // エラーハンドリング（画像読み込み失敗時）
+        resultImage.onerror = function() {
+            console.error("画像の読み込みに失敗しました: " + imagePath);
+            modal.style.display = 'block'; // エラー時でもモーダルは表示する
+            resultImage.style.opacity = '1'; // 画像は表示されないが、透明度を元に戻す
+        };
+
         // --- ここまで ---
         document.getElementById('result-title').textContent = result.title;
         document.getElementById('result-description').textContent = result.description;
                 document.getElementById('result-strengths').innerHTML = `<span class="label-text">【強み】</span><br>${result.strengths}`;
                 document.getElementById('result-challenges').innerHTML = `<span class="label-text">【課題】</span><br>${result.challenges}`;
         document.getElementById('result-keywords').innerHTML = `<span class="keyword-label">【キーワード】</span><br><span class="keyword-content">${result.keywords}</span>`;
-        modal.style.display = 'block';
     }
 
     function closeModal() {

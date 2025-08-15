@@ -175,14 +175,15 @@ button:hover {
     height: 100%;
     overflow: auto;
     background: radial-gradient(circle at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%); /* 柔らかいグラデーション背景 */
-    padding-top: 60px;
+    padding-top: 0px;
 }
 
 .modal-content {
     background: #ffe4ff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"><path d="M0 0L100 100M100 0L0 100"/><circle cx="50" cy="50" r="40"/><path d="M50 0L50 100M0 50L100 50"/></g></svg>') repeat; /* 指定された色と複雑な幾何学模様のパターン */
     color: #4a4a4a;
     margin: 5% auto;
-    padding: 35px;
+    padding: 50px;
+    padding-top: 5px; /* Added specific top padding */
     border: 1px solid rgba(255, 255, 255, 0.8); /* 柔らかいボーダー */
     width: 85%;
     max-width: 650px;
@@ -263,6 +264,14 @@ button:hover {
 
 .modal-content p strong {
     color: #ffd700; /* 黄色 */
+}
+
+.modal-content #result-image {
+    display: block;
+    margin: 10px auto;
+    max-width: 50%;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
 
 .close-button {
