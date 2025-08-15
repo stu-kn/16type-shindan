@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
 /* 全体のスタイル */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f4f7f6;
-    color: #333;
+    background: #e999ea url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"><path d="M0 0L100 100M100 0L0 100"/><circle cx="50" cy="50" r="40"/><path d="M50 0L50 100M0 50L100 50"/></g></svg>') repeat; /* 指定された色と複雑な幾何学模様のパターン */
+    color: #4a4a4a; /* 落ち着いたグレーの文字色 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,31 +14,79 @@ body {
     box-sizing: border-box;
 }
 
+/* 背景画像コンテナ */
+.background-images {
+    position: fixed; /* 画面全体に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* 他のコンテンツの下に配置 */
+    pointer-events: none; /* クリックイベントを透過させる */
+}
+
+.background-images img {
+    position: absolute;
+    opacity: 0.1; /* 半透明 */
+    width: 300px; /* サイズを調整 */
+    height: auto;
+    transition: opacity 1s ease-in-out; /* フェードイン/アウト用 */
+}
+
 /* コンテンツを囲むコンテナ */
 .container {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.7); /* 半透明の白 */
+    padding: 15px 40px; /* 上のパディングを狭くする */
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 柔らかい影 */
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* 柔らかいボーダー */
+    backdrop-filter: blur(5px); /* 背景を少しぼかす */
 }
 
 /* 見出し */
 h1 {
-    font-size: 1.8em;
-    margin-bottom: 25px;
-    color: #2c3e50;
+    font-family: 'Kaushan Script', cursive; /* 新しいフォント */
+    font-size: 4.5em; /* 元のサイズに戻す */
+    margin-top: 0; /* 上の余白をなくす */
+        margin-bottom: 50px; /* ここを変更 */
+    color: #e7ec76; /* 指定された色 */
+    text-shadow: 
+        -2px -2px 0 #888,  
+        2px -2px 0 #888,
+        -2px 2px 0 #888,
+        2px 2px 0 #888, /* 太めのグレーの縁取り */
+        0 0 10px rgba(231, 236, 118, 0.8), /* 強い光 */
+        0 0 20px rgba(231, 236, 118, 0.5); /* 広い光 */
+    letter-spacing: 3px; /* 文字間隔を広げる */
+    line-height: 0.8; /* 行間を狭くする */
+}
+
+/* サブタイトル */
+.subtitle {
+    color: white;
+    font-weight: bold; /* 太くする */
+    margin-top: 50px; /* h1との間隔を調整 */
+    margin-bottom: 20px; /* 下の要素との間隔 */
+    font-size: 1.8em; /* サイズを調整 */
+    text-shadow:
+        -1px -1px 0 #888,  /* 細いグレーの縁取り */
+        1px -1px 0 #888,
+        -1px 1px 0 #888,
+        1px 1px 0 #888,
+        1px 1px 3px rgba(0,0,0,0.5); /* ドロップシャドウ */
 }
 
 /* ラベル */
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: bold;
-    text-align: left;
-    color: #555;
+    text-align: center;
+    color: #e999ea; /* ページ全体の背景色 */
 }
 
 /* 入力フィールドとセレクトボックス */
@@ -45,46 +95,52 @@ select {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* paddingを含めて幅を計算 */
-    font-size: 1em;
-    transition: border-color 0.3s;
+    border: 1px solid #d8bfd8; /* 淡い紫のボーダー */
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    background-color: rgba(255, 255, 255, 0.8); /* ほぼ白の背景 */
+    color: #4a4a4a;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="text"]:focus,
 select:focus {
-    border-color: #77aaff;
+    border-color: #ffb6c1; /* フォーカス時に淡いピンク */
     outline: none;
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.5); /* 柔らかい光 */
 }
 
 /* ボタン */
 button {
     width: 100%;
-    padding: 12px;
-    background-color: #3498db;
+    padding: 15px;
+    background: linear-gradient(45deg, #ffb6c1, #dda0dd); /* 淡いピンクから淡い紫へのグラデーション */
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: bold;
-    transition: background-color 0.3s;
+    letter-spacing: 1px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-    background-color: #2980b9;
+    transform: translateY(-2px); /* 少し浮き上がる */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* 誕生日選択のスタイル */
 .birthday-select {
     display: flex;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
-/* 誕生日のselect要素は、個別のマージンをリセット */
 .birthday-select select {
-    margin-bottom: 20px; /* 他のselectと合わせる */
+    margin-bottom: 0;
 }
 
 /* スマートフォン向けのレスポンシブ対応 */
@@ -94,71 +150,143 @@ button:hover {
     }
 
     .container {
-        padding: 20px;
+        padding: 25px;
+        max-width: 90%;
     }
 
     h1 {
-        font-size: 1.5em;
+        font-size: 1.8em; /* 元のサイズに戻す */
+    }
+
+    button {
+        padding: 12px;
+        font-size: 1.1em;
     }
 }
 
 /* --- モーダル用のスタイル --- */
 .modal {
-    display: none; /* 初期状態では非表示 */
-    position: fixed; /* 画面に固定 */
-    z-index: 100; /* 最前面に表示 */
+    display: none;
+    position: fixed;
+    z-index: 100;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* 内容が多い場合にスクロール */
-    background-color: rgba(0,0,0,0.5); /* 半透明の黒い背景 */
-    padding-top: 60px; /* 上部に余白 */
+    overflow: auto;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%); /* 柔らかいグラデーション背景 */
+    padding-top: 60px;
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background: #ffe4ff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"><path d="M0 0L100 100M100 0L0 100"/><circle cx="50" cy="50" r="40"/><path d="M50 0L50 100M0 50L100 50"/></g></svg>') repeat; /* 指定された色と複雑な幾何学模様のパターン */
+    color: #4a4a4a;
     margin: 5% auto;
-    padding: 30px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    padding: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.8); /* 柔らかいボーダー */
+    width: 85%;
+    max-width: 650px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* 柔らかい影 */
     position: relative;
-    text-align: left;
+    text-align: left; /* This was left before the center-align request */
+    backdrop-filter: blur(8px); /* 背景を少しぼかす */
 }
 
 .modal-content h2 {
-    margin-top: 0;
-    color: #2c3e50;
+    margin-top: 20px; /* 上の余白を増やす */
+    margin-bottom: 15px; /* 下の余白を追加 */
+    color: #b107ba;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+    font-size: 2.2em; /* さらに大きく */
+    font-weight: bold; /* 太字 */
+    border-bottom: 2px solid #e0e0e0; /* 下線を追加 */
+    padding-bottom: 10px; /* 下線との間隔 */
 }
 
 .modal-content p {
+    line-height: 1.6; /* 行間を少し狭く */
+    margin-bottom: 15px; /* 余白を増やす */
+    color: #555; /* より読みやすいグレー */
+    font-size: 1.05em; /* 少し大きく */
+}
+
+/* キーワード */
+.modal-content #result-keywords {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ff69b4; /* ピンク */
+    margin-bottom: 20px; /* 下の余白 */
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+
+
+
+.modal-content .keyword-content {
+    font-size: 1.3em; /* キーワードの中身のサイズ */
+    font-weight: normal; /* 親のboldを解除 */
+    display: block; /* 改行を維持 */
+    margin-top: 5px; /* ラベルとの間隔 */
+}
+
+/* 詳細 */
+.modal-content #result-description {
+    font-size: 1.0em; /* 基本サイズ */
+    color: #4a4a4a; /* 濃いグレー */
+    margin-bottom: 15px;
     line-height: 1.6;
-    margin-bottom: 10px;
+}
+
+/* 強みと課題の共通スタイル */
+.modal-content #result-strengths,
+.modal-content #result-challenges {
+    font-size: 1.0em; /* 少し大きく */
+    color: #4a4a4a; /* 濃いグレー */
+    margin-bottom: 15px; /* 余白を増やす */
+    padding: 10px 15px; /* パディングを追加 */
+    background-color: rgba(240, 240, 240, 0.7); /* 薄い背景色 */
+    border-radius: 8px; /* 角を丸く */
+    text-align: center; /* 中央揃え */
+}
+
+.modal-content .label-text {
+    font-weight: bold;
+}
+
+
+
+.modal-content p strong {
+    color: #ffd700; /* 黄色 */
 }
 
 .close-button {
-    color: #aaa;
+    color: #8a2be2; /* 青紫の閉じるボタン */
     position: absolute;
     top: 15px;
     right: 25px;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
 .close-button:hover,
 .close-button:focus {
-    color: black;
+    color: #ffb6c1; /* ホバーで淡いピンク */
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-content #result-type {
-    font-size: 1.2em;
+    font-size: 2.0em;
     font-weight: bold;
-    color: #3498db;
-    margin-bottom: 10px;
+    color: white; /* 白色に変更 */
+    margin-bottom: 15px;
     text-align: center;
+    text-shadow: -1px -1px 0 #606060, 1px -1px 0 #606060, -1px 1px 0 #606060, 1px 1px 0 #606060; /* グレーの縁取り */
 }
