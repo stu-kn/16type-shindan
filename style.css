@@ -70,7 +70,7 @@ h1 {
     font-weight: bold; /* 太くする */
     margin-top: 50px; /* h1との間隔を調整 */
     margin-bottom: 20px; /* 下の要素との間隔 */
-    font-size: 1.8em; /* サイズを調整 */
+    font-size: 1.4em; /* サイズを調整 */
     text-shadow:
         -1px -1px 0 #888,  /* 細いグレーの縁取り */
         1px -1px 0 #888,
@@ -166,7 +166,7 @@ button:hover {
 
   .modal-content {
     width: 90% !important; /* スマホでのモーダルの幅を強制 */
-    padding: 5px 15px 25px 15px !important; /* スマホでのモーダルの余白を強制 (上、左右、下) */
+    padding: 5px 15px 40px 15px !important; /* スマホでのモーダルの余白を強制 (上、左右、下) */
   }
 
     button {
@@ -175,7 +175,7 @@ button:hover {
     }
 
   .modal-content h2 {
-    font-size: 1.8em !important; /* 見出しをもうちょっと大きく */
+    font-size: 1.5em !important; /* 見出しをもうちょっと大きく */
   }
   .modal-content #result-image {
     max-width: 80% !important; /* 優先度を上げて画像を大きく */
@@ -224,6 +224,7 @@ button:hover {
     font-weight: bold; /* 太字 */
     border-bottom: 2px solid #e0e0e0; /* 下線を追加 */
     padding-bottom: 10px; /* 下線との間隔 */
+    text-align: center;
 }
 
 .modal-content p {
@@ -319,4 +320,14 @@ button:hover {
     margin-bottom: 15px;
     text-align: center;
     text-shadow: -1px -1px 0 #606060, 1px -1px 0 #606060, -1px 1px 0 #606060, 1px 1px 0 #606060; /* グレーの縁取り */
+}
+
+.keyword-label {
+    font-weight: bold;
+    color: #ff69b4; /* ピンク */
+}
+
+/* Adjust position for non-AB types for visual centering */
+#result-type.type-other {
+    transform: translateX(0.15em);
 }
