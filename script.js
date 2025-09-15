@@ -492,13 +492,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Web Share API is not supported.');
             }
         } catch (error) {
-            console.error('シェアに失敗しました:', error);
-            // 最終フォールバック (Twitter)
-            alert(`お使いのブラウザは画像シェアに対応していません。診断結果をテキストでシェアします。
-
-※スマートフォン版ブラウザでは、結果画像を共有できます。`);
-            const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${shareText}\n\n${hashtag}`)}&url=${encodeURIComponent(shareUrl)}`;
-            window.open(twitterIntentUrl, '_blank');
+            // ユーザーが共有をキャンセルした場合は、エラーとして扱わない
+            if (error.name === 'AbortError') {
+                console.log('共有がユーザーによってキャンセルされました。');
+            } else {
+                console.error('シェアに失敗しました:', error);
+                // 最終フォールバック (Twitter)
+                alert(`お使いのブラウザは画像シェアに対応していません。診断結果をテキストでシェアします。\n\n※スマートフォン版ブラウザでは、結果画像を共有できます。`);
+                const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${shareText}\n\n${hashtag}`)}&url=${encodeURIComponent(shareUrl)}`;
+                window.open(twitterIntentUrl, '_blank');
+            }
         } finally {
             // ボタンを元に戻す
             shareButton.disabled = false;
