@@ -68,7 +68,7 @@ h1 {
 .subtitle {
     color: white;
     font-weight: bold; /* 太くする */
-    margin-top: 50px; /* h1との間隔を調整 */
+    margin-top: 10px;
     margin-bottom: 20px; /* 下の要素との間隔 */
     font-size: 1.4em; /* サイズを調整 */
     text-shadow:
@@ -442,4 +442,11 @@ button:hover {
     width: 600px; /* プレビューサイズを大きく調整 */
     height: auto;
     border: 1px solid #ddd;
+}
+
+/* タイトル画像 */
+#title-image {
+    max-width: 70%;
+    height: auto;
+    margin-bottom: 0px;
 }

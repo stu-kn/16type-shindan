@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${shareText}\n\n${hashtag}`)}&url=${encodeURIComponent(shareUrl)}`;
             window.open(twitterIntentUrl, '_blank');
             shareButton.disabled = false;
-            shareButton.textContent = '結果をシェアする';
+            shareButton.textContent = 'SNSで結果をシェアする';
             return;
         }
 
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } finally {
             // 4. 成功、失敗、キャンセルに関わらず、必ずボタンを元に戻す
             shareButton.disabled = false;
-            shareButton.textContent = '結果をシェアする';
+            shareButton.textContent = 'SNSで結果をシェアする';
         }
     }
 
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // シェアボタンを有効化
             shareButton.disabled = false;
             shareButton.style.opacity = 1;
-            shareButton.textContent = '結果をシェアする';
+            shareButton.textContent = 'SNSで結果をシェアする';
         };
 
         canvasPreviewContainer.appendChild(canvas);
