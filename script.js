@@ -443,9 +443,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const shareText = `私の診断結果は「${lastResultType}」でした！\nあなたも診断してみよう！`;
         const shareUrl = window.location.origin + window.location.pathname;
-        const hashtag = "#血液型エレメント診断";
+        const shareText = `私の診断結果は「${lastResultType}」でした！
+あなたの血液型エレメントは？
+
+${shareUrl}`;
+        const hashtag = "#血液型エレメント診断 #血液型エレメント";
 
         // ボタンを一時的に無効化
         shareButton.disabled = true;
