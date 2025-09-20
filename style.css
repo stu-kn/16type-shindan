@@ -418,6 +418,12 @@ button:hover {
     margin-top: 20px; /* 上の要素との間隔 */
 }
 
+/* Instagramシェアボタンのスタイル */
+#share-instagram-story-button {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf); /* Instagram風のグラデーション */
+    margin-bottom: 10px; /* 下のボタンとの間隔 */
+}
+
 /* シェア画像プレビューのスタイル */
 #canvas-preview-container {
     display: none; /* 初期状態では非表示 */

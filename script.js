@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultImage = document.getElementById('result-image');
     const closeModalButton = document.querySelector('.close-button');
     const shareButton = document.getElementById('share-button');
+    const shareInstagramButton = document.getElementById('share-instagram-story-button');
     const backgroundImagesContainer = document.querySelector('.background-images');
     const canvasPreviewContainer = document.getElementById('canvas-preview-container');
 
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target == modal) closeModal();
     });
     shareButton.addEventListener('click', shareResult);
+    shareInstagramButton.addEventListener('click', shareToInstagramStory);
 
     window.addEventListener('popstate', (event) => {
         if (event.state) {
@@ -381,9 +383,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('result-compatibility').innerHTML = `<span class="label-text">【相性がいい血液型エレメント】</span><br>${result.compatibility.join('<br><br>')}`;
 
         // シェアボタンを一旦無効化
-        shareButton.disabled = true;
-        shareButton.style.opacity = 0.5;
-        shareButton.textContent = 'シェア画像生成中...';
+        [shareButton, shareInstagramButton].forEach(button => {
+            button.disabled = true;
+            button.style.opacity = 0.5;
+            button.textContent = 'シェア画像生成中...';
+        });
 
         // シェア画像を生成
         generateShareImage(result, type, imagePath);
@@ -448,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function() {
 あなたの血液型エレメントは？
 
 ${shareUrl}`;
-        const hashtag = "#血液型エレメント診断 #血液型エレメント";
+        const hashtag = "#血液型エレメント診断 #血液型エレメント #血液型";
 
         // ボタンを一時的に無効化
         shareButton.disabled = true;
@@ -503,6 +507,41 @@ ${shareUrl}`;
             // 4. 成功、失敗、キャンセルに関わらず、必ずボタンを元に戻す
             shareButton.disabled = false;
             shareButton.textContent = 'SNSで結果をシェアする';
+        }
+    }
+
+    /**
+     * Instagramストーリーにシェアする (クリップボード経由)
+     */
+    async function shareToInstagramStory() {
+        if (!navigator.clipboard || !navigator.clipboard.write) {
+            alert('お使いのブラウザはこの機能に対応していません。');
+            return;
+        }
+
+        const canvas = canvasPreviewContainer.querySelector('canvas');
+        if (!canvas) {
+            alert('シェア画像が見つかりません。');
+            return;
+        }
+
+        shareInstagramButton.disabled = true;
+        shareInstagramButton.textContent = 'コピー中...';
+
+        try {
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            await navigator.clipboard.write([
+                new ClipboardItem({
+                    [blob.type]: blob
+                })
+            ]);
+            alert('結果画像をクリップボードにコピーしました。\nInstagramのストーリー作成画面でペーストしてシェアできます！');
+        } catch (error) {
+            console.error('クリップボードへのコピーに失敗しました:', error);
+            alert('画像のコピーに失敗しました。お使いのブラウザが対応していない可能性があります。');
+        } finally {
+            shareInstagramButton.disabled = false;
+            shareInstagramButton.textContent = 'Instagram Storyにシェア';
         }
     }
 
@@ -599,7 +638,10 @@ ${shareUrl}`;
             // シェアボタンを有効化
             shareButton.disabled = false;
             shareButton.style.opacity = 1;
-            shareButton.textContent = 'SNSで結果をシェアする';
+            shareButton.textContent = 'X(Twitter)やLINEに結果をシェア';
+            shareInstagramButton.disabled = false;
+            shareInstagramButton.style.opacity = 1;
+            shareInstagramButton.textContent = 'Instagram(Story)に結果をシェア';
         };
 
         canvasPreviewContainer.appendChild(canvas);
