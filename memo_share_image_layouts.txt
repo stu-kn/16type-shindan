@@ -1,0 +1,129 @@
+// =================================================================
+// 保存用：横長レイアウトのシェア画像生成コード (2025/09/15時点の最終版)
+// =================================================================
+
+/**
+ * 指定された幅でテキストを折り返して描画する関数 (縁取りなし)
+ */
+function wrapAndDrawText_Horizontal(context, text, x, y, maxWidth, lineHeight) {
+    // 1文字ずつ分割して折り返す（日本語のようなスペースのない言語向け）
+    let line = '';
+    let currentY = y;
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const testLine = line + char;
+        const metrics = context.measureText(testLine);
+        if (metrics.width > maxWidth && i > 0) {
+            context.fillText(line, x, currentY);
+            line = char;
+            currentY += lineHeight;
+        } else {
+            line = testLine;
+        }
+    }
+    context.fillText(line, x, currentY);
+    return currentY; // 最終行のY座標を返す
+}
+
+/**
+ * シェア用の画像を生成する (横長レイアウト)
+ */
+function generateShareImage_Horizontal(resultData, resultType, imagePath) {
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const canvasWidth = 1200;
+    const canvasHeight = 630;
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    ctx.fillStyle = '#f8f0f8';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    // --- レイアウト定義 ---
+    const padding = { top: 40, right: 40, bottom: 40, left: 40 };
+    const contentWidth = canvasWidth - padding.left - padding.right;
+    const imageAreaWidth = 520;
+    const gap = 40;
+    const textAreaX = padding.left + imageAreaWidth + gap;
+    const textAreaWidth = contentWidth - imageAreaWidth - gap;
+
+    // --- テキスト描画 ---
+    let currentY = padding.top + 80;
+
+    // 結果タイプ
+    ctx.font = 'bold 52px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.strokeStyle = '#606060';
+    ctx.lineWidth = 6;
+    ctx.lineJoin = 'round';
+    ctx.strokeText(resultType, textAreaX, currentY);
+    ctx.fillStyle = 'white';
+    ctx.fillText(resultType, textAreaX, currentY);
+    currentY += 52 + 40;
+
+    // 見出し
+    ctx.font = 'bold 42px sans-serif';
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 4;
+    ctx.fillStyle = '#b107ba';
+    const titleLines = resultData.title.split('<br>');
+    titleLines.forEach((line, index) => {
+        if(index > 0) currentY += 50;
+        ctx.strokeText(line, textAreaX, currentY);
+        ctx.fillText(line, textAreaX, currentY);
+    });
+    currentY += 60;
+
+    // キーワード
+    ctx.font = 'bold 32px sans-serif';
+    ctx.fillStyle = '#ff69b4';
+    ctx.fillText("【キーワード】", textAreaX, currentY);
+    currentY += 45;
+    ctx.font = '30px sans-serif';
+    const keywords = resultData.keywords.replace(/<br>/g, ' / ');
+    currentY = wrapAndDrawText_Horizontal(ctx, keywords, textAreaX, currentY, textAreaWidth, 40) + 60;
+
+    // 相性情報
+    ctx.font = 'bold 32px sans-serif';
+    ctx.fillStyle = '#555';
+    ctx.fillText("【相性がいい血液型エレメント】", textAreaX, currentY);
+    currentY += 45;
+    ctx.font = '30px sans-serif';
+    const compatText1 = resultData.compatibility[0].split('<br>')[0].replace(/<[^>]*>/g, '');
+    ctx.fillText(compatText1, textAreaX, currentY);
+    currentY += 40;
+    const compatText2 = resultData.compatibility[1].split('<br>')[0].replace(/<[^>]*>/g, '');
+    ctx.fillText(compatText2, textAreaX, currentY);
+
+    const textBlockBottom = currentY;
+
+    // --- 画像描画 ---
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = imagePath;
+    img.onload = () => {
+        const imgBoxWidth = imageAreaWidth;
+        const imgBoxHeight = textBlockBottom - padding.top;
+        const imgBoxX = padding.left;
+
+        let drawWidth = img.width;
+        let drawHeight = img.height;
+        const aspectRatio = drawWidth / drawHeight;
+
+        if (drawHeight > imgBoxHeight) {
+            drawHeight = imgBoxHeight;
+            drawWidth = drawHeight * aspectRatio;
+        }
+        if (drawWidth > imgBoxWidth) {
+            drawWidth = imgBoxWidth;
+            drawHeight = drawWidth / aspectRatio;
+        }
+
+        const imgY = textBlockBottom - drawHeight;
+        const imgX = imgBoxX + (imgBoxWidth - drawWidth) / 2;
+
+        ctx.drawImage(img, imgX, imgY, drawWidth, drawHeight);
+    };
+}
