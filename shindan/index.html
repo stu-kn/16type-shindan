@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood type x Element</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <div class="background-images"></div>
+    <div class="container">
+        <div id="start-container">
+            <img id="title-image" src="title/title.png" alt="Blood type x Element">
+            <p class="subtitle">あなたの<br>血液型エレメントは？</p>
+            <label for="bloodtype">血液型を選択してください</label>
+            <select id="bloodtype">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="O">O</option>
+                <option value="AB">AB</option>
+            </select>
+            <button id="start-button">診断を始める</button>
+        </div>
+
+        <div id="question-container" style="display: none;">
+            <button id="back-button" style="display: none;">← 戻る</button>
+            <div id="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <p id="question-text"></p>
+            <div id="choices-container"></div>
+        </div>
+    </div>
+    <script src="script.js?v=2"></script>
+
+    <!-- 結果表示モーダル -->
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="result-type"></p>
+            <img id="result-image" src="https://via.placeholder.com/150" alt="Result Image" style="max-width:50%; height:auto; display:block; margin: 10px auto;">
+            <h2 id="result-title"></h2>
+            <p id="result-keywords"></p>
+            <p id="result-description"></p>
+            <p id="result-strengths"></p>
+                        <p id="result-challenges"></p>
+            <p id="result-compatibility"></p>
+            <div id="sns-share-container" style="text-align: center; margin-top: 10px;">
+                <p><b>SNSで結果をシェアする</b></p>
+                <div class="share-icon" data-sns="twitter" style="display: inline-block; cursor: pointer; margin: 0 10px;">
+                    <img src="icon_logo/X_logo-black.png" alt="X" width="40" height="40">
+                </div>
+                <div class="share-icon" data-sns="instagram" style="display: inline-block; cursor: pointer; margin: 0 10px;">
+                    <img src="icon_logo/Instagram_Glyph_Gradient.png" alt="Instagram" width="40" height="40">
+                </div>
+                <div class="share-icon" data-sns="line" style="display: inline-block; cursor: pointer; margin: 0 10px;">
+                    <img src="icon_logo/LINE_Brand_icon.png" alt="LINE" width="40" height="40">
+                </div>
+                <div class="share-icon" data-sns="facebook" style="display: inline-block; cursor: pointer; margin: 0 10px;">
+                    <img src="icon_logo/Facebook_Logo_Primary.png" alt="Facebook" width="40" height="40">
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 10px;"><b>診断結果の画像を投稿しよう！↑↑</b></p>
+        </div>
+    </div>
+
+    <!-- シェア画像プレビュー用のコンテナ -->
+    <div id="canvas-preview-container">
+        <p>シェア画像プレビュー</p>
+    </div>
+</body>
+</html>

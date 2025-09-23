@@ -1,0 +1,458 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+/* 全体のスタイル */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #e999ea url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"><path d="M0 0L100 100M100 0L0 100"/><circle cx="50" cy="50" r="40"/><path d="M50 0L50 100M0 50L100 50"/></g></svg>') repeat; /* 指定された色と複雑な幾何学模様のパターン */
+    color: #4a4a4a; /* 落ち着いたグレーの文字色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* 背景画像コンテナ */
+.background-images {
+    position: fixed; /* 画面全体に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* 他のコンテンツの下に配置 */
+    pointer-events: none; /* クリックイベントを透過させる */
+}
+
+.background-images img {
+    position: absolute;
+    opacity: 0.1; /* 半透明 */
+    width: 300px; /* サイズを調整 */
+    height: auto;
+    transition: opacity 1s ease-in-out; /* フェードイン/アウト用 */
+}
+
+/* コンテンツを囲むコンテナ */
+.container {
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明の白 */
+    padding: 15px 40px; /* 上のパディングを狭くする */
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 柔らかい影 */
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* 柔らかいボーダー */
+}
+
+/* 見出し */
+h1 {
+    font-family: 'Kaushan Script', cursive; /* 新しいフォント */
+    font-size: 4.5em; /* 元のサイズに戻す */
+    margin-top: 0; /* 上の余白をなくす */
+        margin-bottom: 50px; /* ここを変更 */
+    color: #e7ec76; /* 指定された色 */
+    text-shadow: 
+        -2px -2px 0 #888,  
+        2px -2px 0 #888,
+        -2px 2px 0 #888,
+        2px 2px 0 #888, /* 太めのグレーの縁取り */
+        0 0 10px rgba(231, 236, 118, 0.8), /* 強い光 */
+        0 0 20px rgba(231, 236, 118, 0.5); /* 広い光 */
+    letter-spacing: 3px; /* 文字間隔を広げる */
+    line-height: 0.8; /* 行間を狭くする */
+}
+
+/* サブタイトル */
+.subtitle {
+    color: white;
+    font-weight: bold; /* 太くする */
+    margin-top: 10px;
+    margin-bottom: 20px; /* 下の要素との間隔 */
+    font-size: 1.4em; /* サイズを調整 */
+    text-shadow:
+        -1px -1px 0 #888,  /* 細いグレーの縁取り */
+        1px -1px 0 #888,
+        -1px 1px 0 #888,
+        1px 1px 0 #888,
+        1px 1px 3px rgba(0,0,0,0.5); /* ドロップシャドウ */
+}
+
+/* ラベル */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: #e999ea; /* ページ全体の背景色 */
+}
+
+/* 入力フィールドとセレクトボックス */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #d8bfd8; /* 淡い紫のボーダー */
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    background-color: rgba(255, 255, 255, 0.8); /* ほぼ白の背景 */
+    color: #4a4a4a;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #ffb6c1; /* フォーカス時に淡いピンク */
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.5); /* 柔らかい光 */
+}
+
+/* ボタン */
+button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #ffb6c1, #dda0dd); /* 淡いピンクから淡い紫へのグラデーション */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px); /* 少し浮き上がる */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 誕生日選択のスタイル */
+.birthday-select {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.birthday-select select {
+    margin-bottom: 0;
+}
+
+/* スマートフォン向けのレスポンシブ対応 */
+@media (max-width: 480px) {
+  .background-images {
+    width: 200%; /* キャンバスの幅を画面の2倍に */
+    left: -50%;  /* 幅を2倍にした分、左にずらして中央揃えにする */
+  }
+    .background-images img {
+      width: 150px; /* 画像の基本サイズを小さくする */
+    }
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 25px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 1.8em; /* 元のサイズに戻す */
+    }
+
+  .modal-content {
+    width: 90% !important; /* スマホでのモーダルの幅を強制 */
+    padding: 5px 15px 40px 15px !important; /* スマホでのモーダルの余白を強制 (上、左右、下) */
+  }
+
+    button {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+  .modal-content h2 {
+    font-size: 1.5em !important; /* 見出しをもうちょっと大きく */
+  }
+  .modal-content #result-image {
+    max-width: 80% !important; /* 優先度を上げて画像を大きく */
+  }
+  .modal-content #result-type {
+    font-size: 1.6em !important; /* 「血液型×属性」の文字を小さく */
+  }
+}
+
+/* --- モーダル用のスタイル --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%); /* 柔らかいグラデーション背景 */
+    padding-top: 0px;
+}
+
+.modal-content {
+    background: #ffe4ff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"><path d="M0 0L100 100M100 0L0 100"/><circle cx="50" cy="50" r="40"/><path d="M50 0L50 100M0 50L100 50"/></g></svg>') repeat; /* 指定された色と複雑な幾何学模様のパターン */
+    color: #4a4a4a;
+    margin: 5% auto;
+    padding: 50px;
+    padding-top: 5px; /* Added specific top padding */
+    border: 1px solid rgba(255, 255, 255, 0.8); /* 柔らかいボーダー */
+    width: 85%;
+    max-width: 650px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* 柔らかい影 */
+    position: relative;
+    text-align: left; /* This was left before the center-align request */
+    backdrop-filter: blur(8px); /* 背景を少しぼかす */
+}
+
+.modal-content h2 {
+    margin-top: 20px; /* 上の余白を増やす */
+    margin-bottom: 15px; /* 下の余白を追加 */
+    color: #b107ba;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+    font-size: 2.2em; /* さらに大きく */
+    font-weight: bold; /* 太字 */
+    border-bottom: 2px solid #e0e0e0; /* 下線を追加 */
+    padding-bottom: 10px; /* 下線との間隔 */
+    text-align: center;
+}
+
+.modal-content p {
+    line-height: 1.6; /* 行間を少し狭く */
+    margin-bottom: 15px; /* 余白を増やす */
+    color: #555; /* より読みやすいグレー */
+    font-size: 1.05em; /* 少し大きく */
+}
+
+/* キーワード */
+.modal-content #result-keywords {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ff69b4; /* ピンク */
+    margin-bottom: 20px; /* 下の余白 */
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.modal-content .keyword-content {
+    font-size: 1.3em; /* キーワードの中身のサイズ */
+    font-weight: normal; /* 親のboldを解除 */
+    display: block; /* 改行を維持 */
+    margin-top: 5px; /* ラベルとの間隔 */
+}
+
+/* 詳細 */
+.modal-content #result-description {
+    font-size: 1.0em; /* 基本サイズ */
+    color: #4a4a4a; /* 濃いグレー */
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* 強みと課題の共通スタイル */
+.modal-content #result-strengths,
+.modal-content #result-challenges,
+.modal-content #result-compatibility {
+    font-size: 1.0em; /* 少し大きく */
+    color: #4a4a4a; /* 濃いグレー */
+    margin-bottom: 15px; /* 余白を増やす */
+    padding: 10px 15px; /* パディングを追加 */
+    background-color: rgba(240, 240, 240, 0.7); /* 薄い背景色 */
+    border-radius: 8px; /* 角を丸く */
+    text-align: center; /* 中央揃え */
+}
+
+.modal-content .label-text {
+    font-weight: bold;
+}
+
+.modal-content p strong {
+    color: #ffd700; /* 黄色 */
+}
+
+.modal-content #result-image {
+    display: block;
+    margin: 10px auto;
+    max-width: 50%;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.close-button {
+    color: #8a2be2; /* 青紫の閉じるボタン */
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 32px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #ffb6c1; /* ホバーで淡いピンク */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content #result-type {
+    font-size: 2.0em;
+    font-weight: bold;
+    color: white; /* 白色に変更 */
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: -1px -1px 0 #606060, 1px -1px 0 #606060, -1px 1px 0 #606060, 1px 1px 0 #606060; /* グレーの縁取り */
+}
+
+.keyword-label {
+    font-weight: bold;
+    color: #ff69b4; /* ピンク */
+}
+
+/* Adjust position for non-AB types for visual centering */
+#result-type.type-other {
+    transform: translateX(0.15em);
+}
+
+/* --- 質問画面のスタイル --- */
+#question-container {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    padding-top: 30px; /* Space for back button */
+}
+
+#back-button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1em;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#back-button:hover {
+    color: #000;
+}
+
+#progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #ffb6c1;
+    transition: width 0.5s ease-in-out;
+}
+
+#question-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+#choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.choice-button {
+    padding: 15px;
+    background: #fff;
+    color: #4a4a4a;
+    border: 2px solid #dda0dd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    text-align: left;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.choice-button:active {
+    background-color: #f0e6f0;
+    transform: translateY(0);
+}
+
+@media (hover: hover) {
+    .choice-button:hover {
+        background-color: #f0e6f0;
+        transform: translateY(-2px);
+    }
+}
+
+#result-compatibility strong {
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* シェアボタンのスタイル */
+#share-button {
+    background: linear-gradient(45deg, #81c784, #4caf50); /* 緑系のグラデーション */
+    margin-top: 20px; /* 上の要素との間隔 */
+}
+
+/* Instagramシェアボタンのスタイル */
+#share-instagram-story-button {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf); /* Instagram風のグラデーション */
+    margin-bottom: 10px; /* 下のボタンとの間隔 */
+}
+
+/* シェア画像プレビューのスタイル */
+#canvas-preview-container {
+    display: none; /* 初期状態では非表示 */
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 200;
+    background: white;
+    padding: 15px;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: opacity 0.5s;
+}
+#canvas-preview-container p {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+#canvas-preview-container canvas {
+    width: 600px; /* プレビューサイズを大きく調整 */
+    height: auto;
+    border: 1px solid #ddd;
+}
+
+/* タイトル画像 */
+#title-image {
+    max-width: 70%;
+    height: auto;
+    margin-bottom: 0px;
+}

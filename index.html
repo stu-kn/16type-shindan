@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP | 性格診断</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        color: #333;
+        text-align: center;
+        background: #e999ea url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"><path d="M0 0L100 100M100 0L0 100"/><circle cx="50" cy="50" r="40"/><path d="M50 0L50 100M0 50L100 50"/></g></svg>') repeat;
+        padding-top: 40px;
+      }
+      h2 {
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      }
+      .sns-container {
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+      .sns-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px; /* Spacing between icons */
+      }
+      .sns-icons a {
+        display: inline-block;
+        transition: transform 0.2s;
+      }
+      .sns-icons a:hover {
+        transform: scale(1.1);
+      }
+      .sns-icons img {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+      }
+      .sns-icons .youtube-icon {
+        width: 80px;
+        height: 80px;
+      }
+      .sns-icons .tiktok-icon {
+        width: 54px;
+        height: 54px;
+      }
+      .btn-shindan {
+        display: inline-block;
+        padding: 12px 28px;
+        margin-top: 20px;
+        font-size: 17px;
+        font-weight: bold;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(45deg, #ff69b4, #c71585);
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+      .btn-shindan:hover {
+        background: linear-gradient(45deg, #ff85c1, #d92096);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+</head>
+<body>
+    <div class="sns-container">
+        <h2>各種公式SNS</h2>
+        <div class="sns-icons">
+            <!-- X (Twitter)のURLを下の#に入力してください -->
+            <a href="https://x.com/blood_element">
+                <img src="./shindan/icon_logo/X_logo-black.png" alt="X (Twitter) Icon">
+            </a>
+            <!-- YouTubeのURLを下の#に入力してください -->
+            <a href="https://www.youtube.com/@bloodtype-element">
+                <img src="./shindan/icon_logo/yt_icon_red_digital.png" alt="YouTube Icon" class="youtube-icon">
+            </a>
+            <!-- TikTokのURLを下の#に入力してください -->
+            <a href="https://www.tiktok.com/@bloodtype_element">
+                <img src="./shindan/icon_logo/TikTok_Icon_Black_Circle.png" alt="TikTok Icon" class="tiktok-icon">
+            </a>
+        </div>
+    </div>
+    
+    <a href="./shindan/" class="btn-shindan">血液型エレメント診断はこちら</a>
+</body>
+</html>
