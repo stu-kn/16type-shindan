@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('result-description').innerHTML = result.description;
         document.getElementById('result-strengths').innerHTML = `<span class="label-text">【強み】</span><br>${result.strengths}`;
         document.getElementById('result-challenges').innerHTML = `<span class="label-text">【課題】</span><br>${result.challenges}`;
-        document.getElementById('result-compatibility').innerHTML = `<span class="label-text">【相性がいい血液型エレメント】</span><br>${result.compatibility.join('<br><br>')}`;
+        document.getElementById('result-compatibility').innerHTML = `<span class="label-text">【相性がいいタイプ】</span><br>${result.compatibility.join('<br><br>')}`;
 
         const shareIcons = document.querySelectorAll('.share-icon');
         shareIcons.forEach(icon => {
@@ -450,8 +450,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const shareUrl = window.location.origin + window.location.pathname;
-        const shareText = `私の診断結果は「${lastResultType}」でした！\nあなたの血液型エレメントは？\n\n${shareUrl}`;
-        const hashtag = "#血液型エレメント診断 #血液型エレメント";
+        const shareText = `私の診断結果は「${lastResultType}」でした！\nあなたのはどのタイプ？\n\n${shareUrl}`;
+        const hashtag = "#e-ぶらっど！ #血液型";
         
         const shareTextElement = snsShareContainer.querySelector('p');
 
@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const file = new File([blob], 'diagnosis-result.png', { type: 'image/png' });
             const shareData = {
-                title: '血液型エレメント診断',
+                title: 'e-ぶらっど！診断',
                 text: `${shareText}\n\n${hashtag}`,
                 url: shareUrl,
                 files: [file]
@@ -614,7 +614,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // 5. 相性情報
             ctx.font = 'bold 34px sans-serif';
             ctx.fillStyle = '#555';
-            ctx.fillText("【相性がいい血液型エレメント】", centerX, currentY);
+            ctx.fillText("【相性がいいタイプ】", centerX, currentY);
             currentY += 50;
             ctx.font = '38px sans-serif';
             const compatText1 = resultData.compatibility[0].split('<br>')[0].replace(/<[^>]*>/g, '');
